@@ -17,6 +17,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Plus, Send, Trash2, MessageSquare, Bot, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export function Chat() {
   const queryClient = useQueryClient();
@@ -220,9 +222,17 @@ export function Chat() {
                             <Bot className="h-5 w-5" />
                           </div>
                         )}
-                        <div className="text-sm whitespace-pre-wrap leading-relaxed">
-                          {msg.content}
-                        </div>
+                        {msg.role === "assistant" ? (
+                          <div className="prose prose-sm dark:prose-invert max-w-none text-sm leading-relaxed [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
+                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                              {msg.content}
+                            </ReactMarkdown>
+                          </div>
+                        ) : (
+                          <div className="text-sm whitespace-pre-wrap leading-relaxed">
+                            {msg.content}
+                          </div>
+                        )}
                         {msg.role === "user" && (
                           <div className="mt-1 shrink-0">
                             <User className="h-5 w-5 opacity-80" />
@@ -238,8 +248,10 @@ export function Chat() {
                         <div className="mt-1 shrink-0">
                           <Bot className="h-5 w-5" />
                         </div>
-                        <div className="text-sm whitespace-pre-wrap leading-relaxed">
-                          {streamedContent}
+                        <div className="prose prose-sm dark:prose-invert max-w-none text-sm leading-relaxed [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
+                          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                            {streamedContent}
+                          </ReactMarkdown>
                         </div>
                       </div>
                     </div>
