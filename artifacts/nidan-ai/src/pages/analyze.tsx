@@ -4,7 +4,7 @@ import { useAnalyzeReport } from "@workspace/api-client-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { UploadCloud, FileText, Image as ImageIcon, CheckCircle2, AlertCircle } from "lucide-react";
+import { UploadCloud, FileText, Image as ImageIcon, CheckCircle2, AlertCircle, Activity } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { ReportType } from "@workspace/api-client-react/src/generated/api.schemas";
 
