@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "NIDAN.ai"
+version = "1.0.0"
+id = "artifacts/nidan-ai"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23224
+
+[services.development]
+run = "pnpm --filter @workspace/nidan-ai run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/nidan-ai", "run", "build" ]
+publicDir = "artifacts/nidan-ai/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23224"
+BASE_PATH = "/"

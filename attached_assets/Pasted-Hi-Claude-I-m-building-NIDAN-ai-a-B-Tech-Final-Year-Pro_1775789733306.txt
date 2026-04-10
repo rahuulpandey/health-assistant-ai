@@ -1,0 +1,48 @@
+Hi Claude! I'm building NIDAN.ai — a B.Tech Final Year Project (Data Science).
+It's an AI-powered medical report analysis web app built in Python + Streamlit.
+
+My GitHub: https://github.com/rahuulpandey/nidan (public)
+
+CURRENT STACK:
+- Frontend: Streamlit + custom CSS
+- Backend: Python
+- AI: Google Gemini API
+- DB: SQLite (database/nidan.db)
+- Libraries: streamlit, PIL, reportlab, google-generativeai, pytesseract, opencv, SpeechRecognition
+
+FILES IN PROJECT:
+- app.py (entry, auth routing, logout button)
+- auth.py (SQLite login/signup with SHA-256 hashing)
+- ui.py (main UI - 579 lines, has chat, image analysis, show_history())
+- database.py (all SQLite operations - chat_history + image_history tables)
+- config.py, utils.py, processor.py
+- services/ai_service.py, services/image_service.py, services/speech_service.py
+- styles.css (custom styling)
+
+FEATURES COMPLETED:
+✅ SQLite auth (persistent users, signup/login/logout)
+✅ Health query chat with Gemini AI
+✅ Voice input (SpeechRecognition)
+✅ Medical image upload + enhancement + AI analysis
+✅ PDF/TXT export of chat history
+✅ Report history dashboard (chat + image, with timestamps, delete, clear all)
+✅ Image preview saved as base64 in DB
+✅ Session state fix (image only analyzed once per upload, not on every rerun)
+
+PENDING FEATURES:
+❌ Doctor recommendation (code is commented out in ui.py, googlemaps already installed)
+❌ OCR for scanned reports (pytesseract installed, tesseract installed at C:\Program Files\Tesseract-OCR\tesseract.exe)
+❌ Full UI redesign (DocuVerse style - light gray/white bg, green accents, clean cards, professional medical dashboard look)
+❌ Dark/light mode toggle
+❌ Stat cards at top (total consultations, images analyzed, reports exported)
+
+UI INSPIRATION: DocuVerse dashboard style - soft gray/white background, green accents, clean white cards with subtle shadows, professional medical SaaS look.
+
+MY DEADLINE: 20th April 2026
+
+WHAT I NEED HELP WITH NEXT:
+1. Full CSS redesign (DocuVerse style with dark/light toggle)
+2. Doctor recommendation feature
+3. OCR for scanned reports
+
+Please help me continue building this. Start with the CSS redesign.
