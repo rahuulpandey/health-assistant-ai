@@ -1,6 +1,6 @@
 import { useGetDashboardStats, useGetRecentActivity } from "@workspace/api-client-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Activity, FileImage, Files, MessageSquare, Clock, ArrowRight } from "lucide-react";
+import { Activity, FileImage, Files, MessageSquare, Clock, ArrowRight, Stethoscope } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Link } from "wouter";
 
