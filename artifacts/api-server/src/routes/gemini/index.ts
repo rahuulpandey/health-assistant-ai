@@ -1,5 +1,5 @@
 import { Router, type IRouter } from "express";
-import { eq } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 import { db, conversations as conversationsTable, messages as messagesTable } from "@workspace/db";
 import { ai } from "@workspace/integrations-gemini-ai";
 import {
@@ -17,7 +17,7 @@ router.get("/gemini/conversations", async (req, res): Promise<void> => {
   const conversations = await db
     .select()
     .from(conversationsTable)
-    .orderBy(conversationsTable.createdAt);
+    .orderBy(desc(conversationsTable.createdAt));
   res.json(conversations);
 });
 
@@ -160,6 +160,16 @@ router.post("/gemini/conversations/:id/messages", async (req, res): Promise<void
     role: "assistant",
     content: fullResponse,
   });
+
+  // Auto-title the conversation from the first user message (ChatGPT-style)
+  if (allMessages.length === 1) {
+    const firstMsg = body.data.content.trim();
+    const autoTitle = firstMsg.length > 60 ? firstMsg.slice(0, 57) + "…" : firstMsg;
+    await db
+      .update(conversationsTable)
+      .set({ title: autoTitle })
+      .where(eq(conversationsTable.id, params.data.id));
+  }
 
   res.write(`data: ${JSON.stringify({ done: true })}\n\n`);
   res.end();
