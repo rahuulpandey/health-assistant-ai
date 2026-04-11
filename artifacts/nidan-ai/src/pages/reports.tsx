@@ -20,6 +20,19 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import jsPDF from "jspdf";
 
+function getReportDisplayName(report: any): string {
+  if (report.analysisResult) {
+    const firstLine = report.analysisResult
+      .split('\n')
+      .map((l: string) => l.replace(/^#{1,6}\s*/, '').replace(/[*_`~>\-]/g, '').trim())
+      .find((l: string) => l.length > 8);
+    if (firstLine) {
+      return firstLine.length > 42 ? firstLine.slice(0, 39) + '…' : firstLine;
+    }
+  }
+  return report.filename.replace(/\.[^/.]+$/, '');
+}
+
 export function Reports() {
   const queryClient = useQueryClient();
   const { toast } = useToast();
