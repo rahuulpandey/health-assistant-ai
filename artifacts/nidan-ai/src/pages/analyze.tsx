@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { UploadCloud, FileText, Image as ImageIcon, CheckCircle2, AlertCircle, Activity } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { ReportType } from "@workspace/api-client-react/src/generated/api.schemas";
 
 export function Analyze() {
@@ -214,9 +216,13 @@ export function Analyze() {
                         <Activity className="w-4 h-4 mr-2" />
                         Summary
                       </h4>
-                      <p className="text-sm text-muted-foreground bg-muted p-3 rounded-md leading-relaxed">
-                        {result.analysisResult}
-                      </p>
+                      <div className="bg-muted p-3 rounded-md">
+                        <div className="prose prose-sm dark:prose-invert max-w-none text-muted-foreground [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
+                          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                            {result.analysisResult}
+                          </ReactMarkdown>
+                        </div>
+                      </div>
                     </div>
 
                     {result.findings && (
@@ -225,8 +231,12 @@ export function Analyze() {
                           <AlertCircle className="w-4 h-4 mr-2" />
                           Key Findings
                         </h4>
-                        <div className="text-sm text-muted-foreground bg-muted p-3 rounded-md whitespace-pre-line leading-relaxed">
-                          {result.findings}
+                        <div className="bg-muted p-3 rounded-md">
+                          <div className="prose prose-sm dark:prose-invert max-w-none text-muted-foreground [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
+                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                              {result.findings}
+                            </ReactMarkdown>
+                          </div>
                         </div>
                       </div>
                     )}
