@@ -173,9 +173,9 @@ export function Chat() {
                   activeConvId === conv.id ? "bg-primary/10 text-primary" : "hover:bg-muted"
                 )}
               >
-                <div className="flex items-center overflow-hidden">
+                <div className="flex items-center overflow-hidden min-w-0 flex-1">
                   <MessageSquare className="h-4 w-4 mr-2 shrink-0" />
-                  <span className="truncate text-sm font-medium">{conv.title || "New Conversation"}</span>
+                  <span className="truncate text-sm font-medium min-w-0">{conv.title || "New Conversation"}</span>
                 </div>
                 <Button
                   variant="ghost"
