@@ -257,7 +257,7 @@ export function Reports() {
             <div className="space-y-6 py-4">
               <div>
                 <h3 className="text-sm font-semibold mb-3 text-foreground">Summary</h3>
-                <div className="bg-muted/50 rounded-lg p-4">
+                <div className="bg-muted/50 rounded-lg p-4 overflow-y-auto max-h-64">
                   <div className="prose prose-sm dark:prose-invert max-w-none [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
                     <ReactMarkdown remarkPlugins={[remarkGfm]}>
                       {viewingReport?.analysisResult || "No summary available."}
@@ -269,7 +269,7 @@ export function Reports() {
               {viewingReport?.findings && (
                 <div>
                   <h3 className="text-sm font-semibold mb-3 text-foreground">Key Findings</h3>
-                  <div className="bg-muted/50 rounded-lg p-4">
+                  <div className="bg-muted/50 rounded-lg p-4 overflow-y-auto max-h-64">
                     <div className="prose prose-sm dark:prose-invert max-w-none [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
                       <ReactMarkdown remarkPlugins={[remarkGfm]}>
                         {viewingReport.findings}

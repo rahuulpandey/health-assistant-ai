@@ -7,7 +7,6 @@ import { Link } from "wouter";
 export function Dashboard() {
   const { data: stats, isLoading: statsLoading } = useGetDashboardStats();
   const { data: activity, isLoading: activityLoading } = useGetRecentActivity();
-
   return (
     <div className="space-y-6">
       <div>
