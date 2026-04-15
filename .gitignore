@@ -47,3 +47,6 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+start.ps1
+.env
+*.env
